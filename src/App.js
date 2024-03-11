@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useGeolocated } from "react-geolocated";
+import WeatherComponent from './WeatherComponent';
+import ForecastComponent from './ForecastComponent';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+        useGeolocated({
+            positionOptions: {
+                enableHighAccuracy: false,
+            },
+            userDecisionTimeout: 5000,
+        });
+        return (
+          <div className="App">
+            {isGeolocationAvailable && isGeolocationEnabled && coords
+              ?(
+              <div>
+                <WeatherComponent latitude={coords.latitude} longitude={coords.longitude} />
+                <ForecastComponent latitude={coords.latitude} longitude={coords.longitude} />
+              </div>
+              )
+              : <div>Getting the location data&hellip; </div>}
+          </div>
+        );
 }
-
 export default App;
