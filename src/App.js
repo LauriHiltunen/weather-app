@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useGeolocated } from "react-geolocated";
 import WeatherComponent from './WeatherComponent';
@@ -11,6 +12,7 @@ function App() {
             },
             userDecisionTimeout: 5000,
         });
+        console.log("APP COMPONENT RENDERED");
         return (
           <div className="App">
             {isGeolocationAvailable && isGeolocationEnabled && coords

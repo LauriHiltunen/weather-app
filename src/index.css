@@ -11,12 +11,21 @@ body {
   position: fixed;
   height:100px;
   top:calc(100svh - 100px);
-  background-color: white;
+  background-color:#9bfdff;
   min-width: 100%;
+}
+.sorting > div {
   display: grid;
+  width:50%;
+  margin-left:25%;
   grid-template-columns: repeat(auto-fill,calc(100% / 3));
-  text-align: center;
   align-items: center;
+}
+@media (max-width: 768px) { 
+  .sorting > div {
+    width:100%;
+    margin-left:0;
+  }
 }
 .weather-cards {
   display: grid;

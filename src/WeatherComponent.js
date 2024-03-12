@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import getIconUrl from './WeatherIcons';
 
 class WeatherComponent extends React.Component {
   constructor(props) {
@@ -26,14 +27,15 @@ class WeatherComponent extends React.Component {
   render() {
     const { weatherData } = this.state;
 
-    if (!weatherData) return <div>Loading...</div>;
+    if (!weatherData) return <div className='sorting'>Loading...</div>;
 
     return (
-        <div className='sorting'>
-        <h2 className='test'>{weatherData.name}</h2>
-        <h3>{weatherData.main.temp}°C</h3>
-        <p>{weatherData.weather[0].description}</p>
-        
+      <div className='sorting'>
+        <div>
+          <h2 className='test'>{weatherData.name}</h2>
+          <h3>{weatherData.main.temp}°C</h3>
+          <img alt="weather-icon" src={getIconUrl(weatherData.weather[0].id)}/>
+        </div>
       </div>
     );
   }
