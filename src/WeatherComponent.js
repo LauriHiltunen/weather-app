@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import getIconUrl from './WeatherIcons';
 
 class WeatherComponent extends React.Component {
@@ -11,29 +10,31 @@ class WeatherComponent extends React.Component {
   }
 
   componentDidMount() {
-    const { latitude, longitude } = this.props;
-    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
 
-    axios.get(url)
-      .then((response) => {
-        this.setState({ weatherData: response.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching weather data", error);
-      });
+    this.setState({weatherData:this.props.weatherData})
   }
 
   render() {
     const { weatherData } = this.state;
 
-    if (!weatherData) return <div className='sorting'>Loading...</div>;
+    let colors = ["#9bfdff","#0a016c","#000","#fff"];
+    let date = new Date('2011', '04' - 1, '1', '23', '51', '00');
 
+    let color = colors[0];
+    let text_color = colors[3];
+
+    if(date.getHours() < 7 || date.getHours() > 21) {
+      color = colors[1];
+      text_color = colors[2];
+    }
+
+    if (!weatherData) return <div className='sorting' style={{backgroundColor: color}}>Loading...</div>;
+    
     return (
-      <div className='sorting'>
+      <div className='sorting' style={{backgroundColor: color}}>
         <div>
-          <h2 className='test'>{weatherData.name}</h2>
-          <h3>{weatherData.main.temp}°C</h3>
+          <h2 className='test' style={{color:text_color}}>{weatherData.name}</h2>
+          <h3 style={{color:text_color}}>{Math.floor(weatherData.main.temp)}°C</h3>
           <img alt="weather-icon" src={getIconUrl(weatherData.weather[0].id)}/>
         </div>
       </div>

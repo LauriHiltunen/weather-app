@@ -20,7 +20,6 @@ const getIconUrl = function (id) {
             }
         }
     })
-    console.log(to_be_returned);
     return to_be_returned;
 }
 export default getIconUrl;

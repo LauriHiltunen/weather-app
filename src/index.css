@@ -11,7 +11,6 @@ body {
   position: fixed;
   height:100px;
   top:calc(100svh - 100px);
-  background-color:#9bfdff;
   min-width: 100%;
 }
 .sorting > div {
@@ -23,8 +22,8 @@ body {
 }
 @media (max-width: 768px) { 
   .sorting > div {
-    width:100%;
-    margin-left:0;
+    width:calc(100% - 20px);
+    margin-left:10px;
   }
 }
 .weather-cards {
