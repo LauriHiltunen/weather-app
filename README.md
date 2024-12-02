@@ -1,3 +1,8 @@
+## About
+This app displays weather.
+
+This app uses open-weather api. process.env.REACT_APP_WEATHER_API_KEY. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
